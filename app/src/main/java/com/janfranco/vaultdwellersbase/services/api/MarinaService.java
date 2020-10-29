@@ -4,8 +4,10 @@ import com.janfranco.vaultdwellersbase.entities.AccessToken;
 import com.janfranco.vaultdwellersbase.entities.Dtos.UserLoginDto;
 import com.janfranco.vaultdwellersbase.entities.Dtos.UserRegisterDto;
 import com.janfranco.vaultdwellersbase.entities.Result;
+import com.janfranco.vaultdwellersbase.entities.UserList;
 import com.janfranco.vaultdwellersbase.helpers.RepositoryBase;
 import com.janfranco.vaultdwellersbase.helpers.ResultCallback;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -39,6 +41,11 @@ public class MarinaService {
 
     public void register(UserRegisterDto userRegisterDto, ResultCallback<AccessToken> resultCallback) {
         Call<Result<AccessToken>> call = mMarinaAPI.register(userRegisterDto);
+        mRepositoryBase.query(call, resultCallback);
+    }
+
+    public void getUsers(String accessToken, ResultCallback<UserList> resultCallback) {
+        Call<Result<UserList>> call = mMarinaAPI.getUsers("Bearer: " + accessToken);
         mRepositoryBase.query(call, resultCallback);
     }
 
