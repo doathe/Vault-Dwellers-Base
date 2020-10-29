@@ -1,4 +1,4 @@
-package com.janfranco.vaultdwellersbase.activities;
+package com.janfranco.vaultdwellersbase.user_interface.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.janfranco.vaultdwellersbase.R;
