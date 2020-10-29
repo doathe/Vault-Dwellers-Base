@@ -2,6 +2,7 @@ package com.janfranco.vaultdwellersbase.services.api;
 
 import com.janfranco.vaultdwellersbase.entities.AccessToken;
 import com.janfranco.vaultdwellersbase.entities.Dtos.UserLoginDto;
+import com.janfranco.vaultdwellersbase.entities.Dtos.UserRegisterDto;
 import com.janfranco.vaultdwellersbase.entities.Result;
 
 import retrofit2.Call;
@@ -12,5 +13,8 @@ public interface MarinaAPI {
 
     @POST("user/login")
     Call<Result<AccessToken>> login(@Body UserLoginDto userLoginDto);
+
+    @POST("user/register")
+    Call<Result<AccessToken>> register(@Body UserRegisterDto userRegisterDto);
 
 }
