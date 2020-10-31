@@ -4,10 +4,7 @@ import com.janfranco.vaultdwellersbase.entities.AccessToken;
 import com.janfranco.vaultdwellersbase.entities.Dtos.UserLoginDto;
 import com.janfranco.vaultdwellersbase.entities.Dtos.UserRegisterDto;
 import com.janfranco.vaultdwellersbase.entities.Result;
-import com.janfranco.vaultdwellersbase.entities.User;
 import com.janfranco.vaultdwellersbase.entities.UserList;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

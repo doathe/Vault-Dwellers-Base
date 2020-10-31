@@ -3,7 +3,8 @@ package com.janfranco.vaultdwellersbase.services;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
+
+import com.janfranco.vaultdwellersbase.helpers.UnknownTypeException;
 
 public class SharedPreferencesService {
 
@@ -13,45 +14,46 @@ public class SharedPreferencesService {
         mSharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
     }
 
-    public SharedPreferencesService(Context context, int fileKey) {
-        String fileKeyString = Resources.getSystem().getString(fileKey);
-        mSharedPreferences = context.getSharedPreferences(fileKeyString, Context.MODE_PRIVATE);
+    public SharedPreferencesService(Context context, String fileKey) {
+        mSharedPreferences = context.getSharedPreferences(fileKey, Context.MODE_PRIVATE);
     }
 
     @SuppressWarnings("all")
-    public <T> T readData(int key, T defaultValue) throws Exception {
-        String keyString = Resources.getSystem().getString(key);
-
+    public <T> T readData(String key, T defaultValue) throws UnknownTypeException {
         if (defaultValue instanceof Boolean) {
-            Boolean data = mSharedPreferences.getBoolean(keyString, (Boolean) defaultValue);
+            Boolean data = mSharedPreferences.getBoolean(key, (Boolean) defaultValue);
             return (T) data;
         } else if (defaultValue instanceof Integer) {
-            Integer data = mSharedPreferences.getInt(keyString, (Integer) defaultValue);
+            Integer data = mSharedPreferences.getInt(key, (Integer) defaultValue);
+            return (T) data;
+        } else if (defaultValue instanceof Long) {
+            Long data = mSharedPreferences.getLong(key, (Long) defaultValue);
             return (T) data;
         } else if (defaultValue instanceof String) {
-            String data = mSharedPreferences.getString(keyString, (String) defaultValue);
+            String data = mSharedPreferences.getString(key, (String) defaultValue);
             return (T) data;
         } else {
-            throw new Exception("Unknown type");
+            throw new UnknownTypeException();
         }
     }
 
-    @SuppressWarnings("all")
-    public <T> void writeData(int key, T data) throws Exception {
-        String keyString = Resources.getSystem().getString(key);
+    public <T> void writeData(String key, T data) throws UnknownTypeException {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
 
         if (data instanceof Boolean) {
-            editor.putBoolean(keyString, (Boolean) data);
+            editor.putBoolean(key, (Boolean) data);
             editor.apply();
         } else if (data instanceof Integer) {
-            editor.putBoolean(keyString, (Boolean) data);
+            editor.putInt(key, (Integer) data);
+            editor.apply();
+        } else if (data instanceof Long) {
+            editor.putLong(key, (Long) data);
             editor.apply();
         } else if (data instanceof String) {
-            editor.putBoolean(keyString, (Boolean) data);
+            editor.putString(key, (String) data);
             editor.apply();
         } else {
-            throw new Exception("Unknown type");
+            throw new UnknownTypeException();
         }
     }
 
