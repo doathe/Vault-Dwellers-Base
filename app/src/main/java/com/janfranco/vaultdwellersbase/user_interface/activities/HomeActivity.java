@@ -14,6 +14,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         ButterKnife.bind(this);
+
+
+        //asdfgf
+        //asdfgf
+        //asdfgf
+        //asdfgf
     }
 
 }
