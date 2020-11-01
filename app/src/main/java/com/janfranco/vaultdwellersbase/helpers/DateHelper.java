@@ -4,8 +4,6 @@ import java.util.Date;
 
 public class DateHelper {
 
-    private static final long ONE_MIN_IN_MS = 60000;
-
     public Date getCurrentDate() {
         return new Date();
     }
@@ -23,7 +21,7 @@ public class DateHelper {
     }
 
     public Date addMinutesToDate(Date date, int minutes) {
-        return new Date(date.getTime() + minutes * ONE_MIN_IN_MS);
+        return new Date(date.getTime() + minutes * 60000); // 60000 -> one minute in ms
     }
 
 }
